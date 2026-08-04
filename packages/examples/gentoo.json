@@ -1,0 +1,17 @@
+{
+  "sys": {
+    "install": "emerge --ask",
+    "update": "emerge --ask --update --deep --with-bdeps=y @world"
+  },
+
+  "pkgs": {
+    "package": [
+      "www-client/firefox"
+    ],
+    "flatpak": [],
+    "shell": [
+      "echo \"Finished -> Gentoo\""
+    ],
+    "ignore": ["sudo rm -rf /"]
+  }
+}

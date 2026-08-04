@@ -3,6 +3,29 @@ import json
 import argparse
 import subprocess
 
+def generateJson(filePath):
+    structure = {
+        "sys": {
+            "install": "",
+            "update": ""
+        },
+
+        "pkgs": {
+            "package": [],
+            "flatpak": [],
+            "shell": [],
+            "ignore": []
+        }
+    }
+
+    if(not filePath.endswith(".json")):
+        filePath += ".json"
+
+    with open(filePath, 'w') as f:
+        json.dump(structure, f, indent=4)
+    
+    print(f"[Info] {filePath} file has been generated.")
+
 def loadJson(filePath):
     try:
         with open(filePath, 'r') as f:
@@ -15,7 +38,7 @@ def loadJson(filePath):
         sys.exit(f"[Error] {filePath} could not be read.")
 
 
-def run(cmd, prt=True, pkgs='', merge=1):
+def execute(cmd, prt=True, pkgs='', merge=1):
     if (isinstance(pkgs, list) and merge == 1):
         cmdList = [f"{cmd} {' '.join(pkgs)}"]
 
@@ -36,19 +59,19 @@ def run(cmd, prt=True, pkgs='', merge=1):
             except subprocess.CalledProcessError as e:
                 sys.exit(f"[Error] {e}")
 
-def setup(jsonFile, prt):
+def start(jsonFile, prt):
     print(f"[Info] {jsonFile} file is being read...")
     datas = loadJson(jsonFile)
 
     # System Update
-    run(datas['sys']['update'], prt)
+    execute(datas['sys']['update'], prt)
 
     # Install all packages
-    for pkg in datas['pkgs'].get('packet', []):
-        run(datas['sys']['install'], prt, pkg)
+    for pkg in datas['pkgs'].get('package', []):
+        execute(datas['sys']['install'], prt, pkg)
 
     # Run shell commands
-    run("", prt, datas['pkgs'].get('shell', []), 0)
+    execute("", prt, datas['pkgs'].get('shell', []), 0)
 
 
 def main():
@@ -65,11 +88,23 @@ def main():
         action='store_true',
         help='Show commands without executing them'
     )
+    parser.add_argument(
+        '-g',
+        '--generate',
+        nargs='?',
+        const='template',
+        metavar='FILE',
+        help='Generate a JSON file (default: template.json)'
+    )
 
     args = parser.parse_args()
     
     if (args.file):
-        setup(args.file, args.test)
+        start(args.file, args.test)
+        return
+
+    elif (args.generate):
+        generateJson(args.generate)
         return
 
 if __name__ == "__main__":

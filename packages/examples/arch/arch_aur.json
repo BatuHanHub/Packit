@@ -1,0 +1,18 @@
+{
+  "sys": {
+    "install": "sudo yay -S --needed --noconfirm",
+    "update": "sudo yay -Syu --noconfirm"
+  },
+
+  "pkgs": {
+    "package": [
+      "flatpak"
+    ],
+    "flatpak": [],
+    "shell": [
+      "echo \"Finished -> Arch(yay)\"",
+      "python packit.py -f packages/examples/flatpak.json"
+    ],
+    "ignore": []
+  }
+}

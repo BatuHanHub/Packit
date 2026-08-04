@@ -5,7 +5,7 @@
   },
 
   "pkgs": {
-    "packet": [
+    "package": [
       "org.mozilla.firefox"
     ],
     "shell": ["echo \"Finished -> Flatpak\""],
