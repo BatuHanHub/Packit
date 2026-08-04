@@ -1,0 +1,17 @@
+{
+  "sys": {
+    "install": "sudo pacman -S --needed --noconfirm",
+    "update": "sudo pacman -Syu --noconfirm"
+  },
+
+  "pkgs": {
+    "packet": [
+      "flatpak"
+    ],
+    "flatpak": [],
+    "shell": [
+      "echo \"Finished -> Arch(Pacman)\""
+    ],
+    "ignore": ["cd ~/ && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm"]
+  }
+}

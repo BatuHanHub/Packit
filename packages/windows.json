@@ -1,0 +1,15 @@
+{
+  "sys": {
+    "install": "winget install -e --id --accept-package-agreements --accept-source-agreements",
+    "update": "winget upgrade --all --accept-package-agreements --accept-source-agreements"
+  },
+
+  "pkgs": {
+    "packet": [
+      "BlenderFoundation.Blender"
+    ],
+    "flatpak": [],
+    "shell": [],
+    "ignore": []
+  }
+}

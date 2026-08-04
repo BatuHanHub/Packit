@@ -1,0 +1,14 @@
+{
+  "sys": {
+    "install": "",
+    "update": "",
+    "aurSetup": ""
+  },
+
+  "pkgs": {
+    "packet": [],
+    "flatpak": [],
+    "shell": [],
+    "ignore": []
+  }
+}

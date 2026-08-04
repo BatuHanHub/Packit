@@ -1,0 +1,31 @@
+{
+  "sys": {
+    "install": "sudo apt remove -y",
+    "update": ""
+  },
+
+  "pkgs": {
+    "packet": [
+      "celluloid",
+      "webapp-manager",
+      "warpinator",
+      "hypnotix",
+      "thingy",
+      "hexchat",
+      "fingwit",
+      "redshift",
+      "redshift-gtk",
+      "transmission-gtk",
+      "transmission",
+      "pix",
+      "thunderbird",
+      "gnome-logs",
+      "seahorse",
+      "sticky",
+      "mintchat"
+    ],
+    "flatpak": [],
+    "shell": [],
+    "ignore": []
+  }
+}
