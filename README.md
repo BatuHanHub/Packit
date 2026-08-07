@@ -4,7 +4,7 @@ Packit is a cross-platform package management automation tool. It installs packa
 # Features
 - Cross-platform 
   - **Windows:** *winget*
-  - **Linux:** *apt, rpm/dnf, pacman, paru/yay, flatpak*
+  - **Linux:** *apt, rpm/dnf, pacman, paru/yay, flatpak...*
   - **MacOS:** *homebrew*
   - **BSD**
 - JSON-based configuration
@@ -15,32 +15,45 @@ Packit is a cross-platform package management automation tool. It installs packa
 # JSON Configuration
 ```json
 {
-  // commands used to install and update packages
-  // replace them with the commands for your package manager
-  "sys": {
-    "install": "flatpak install -y",
-    "update": "flatpak update -y"
-  },
-
-  "pkgs": {
-    // package to install
-    "package": [
-      "org.mozilla.firefox"
-      /* More Packages */
-    ],
-    // shell commands to execute after installation
-    "shell": [
-        "echo \"Finished -> Flatpak\"",
-        "python3 packit.py -f my_setup.json" // you can execute another Packit configuration
-    ],
-    // packages or commands to ignore
-    "ignore": [
-      "xxx.ignore.yyy",
-      "sudo rm -rf /"
-    ]
-  }
+    /* it is title for your json file */
+    "meta": { 
+        "name": "template",
+        "version": "1.0.0",
+        "description": ""
+    },
+    /* this place define your operating system and distro for Linux users */
+    "system_info": { 
+        "target_os": "Linux",
+        "target_base": "Arch"
+    },
+    /* your packages */
+    "packages": {
+        "aur": [
+          "godot"
+        ],
+        "flatpak": [
+          "org.blender.Blender"
+        ],
+        "system": [
+          "blender",
+          "firefox"
+        ],
+        "ignore": [
+          "- ignore this packages -",
+          "unityhub"
+        ]
+    },
+    /* you can write bash/zsh/fish/powershell... scripts in here */
+    "scripts": {
+        "pre_script": [ // run before process
+          "clear",
+          "echo \"Starting...\""
+        ],
+        "post_script": [ // run after process
+          "sudo reboot now"
+        ]
+    }
 }
-
 ```
 
 # Arguments

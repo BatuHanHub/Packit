@@ -1,0 +1,36 @@
+{
+    "meta": {
+        "name": "template",
+        "version": "1.0.0",
+        "description": "test json file"
+    },
+    "system_info": {
+        "target_os": "Linux",
+        "target_base": "Arch"
+    },
+    "packages": {
+        "aur": [
+            "godot"
+        ],
+        "flatpak": [
+            "org.blender.Blender"
+        ],
+        "system": [
+            "blender",
+            "firefox"
+        ],
+        "ignore": [
+            "- ignore this packages -",
+            "unityhub"
+        ]
+    },
+    "scripts": {
+        "pre_script": [
+            "clear",
+            "echo \"Starting...\""
+        ],
+        "post_script": [
+            "sudo reboot now"
+        ]
+    }
+}

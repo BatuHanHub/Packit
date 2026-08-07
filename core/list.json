@@ -1,0 +1,163 @@
+{
+    "Windows": [
+        {
+            "package_manager": "winget",
+            "install": "winget install",
+            "update": "winget upgrade --all",
+            "handles": ["system"],
+            "flags": []
+        }
+    ],
+    "MacOS": [
+        {
+            "package_manager": "brew",
+            "install": "brew install",
+            "update": "brew update && brew upgrade",
+            "handles": ["system"],
+            "flags": []
+        }
+    ],
+    "Linux": [
+        {
+            "base": "Arch",
+            "package_manager": "pacman",
+            "install": "sudo pacman -S",
+            "update": "sudo pacman -Syu",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Arch",
+            "package_manager": "paru",
+            "install": "paru -S",
+            "update": "paru -Syu",
+            "handles": ["aur", "system"],
+            "flags": []
+        },
+        {
+            "base": "Arch",
+            "package_manager": "yay",
+            "install": "yay -S",
+            "update": "yay -Syu",
+            "handles": ["aur", "system"],
+            "flags": []
+        },
+        {
+            "base": "Debian",
+            "package_manager": "apt",
+            "install": "sudo apt install",
+            "update": "sudo apt update && sudo apt upgrade -y",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Fedora",
+            "package_manager": "dnf",
+            "install": "sudo dnf install",
+            "update": "sudo dnf upgrade --refresh -y",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "OpenSUSE",
+            "package_manager": "zypper",
+            "install": "sudo zypper install",
+            "update": "sudo zypper refresh && sudo zypper update -y",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Gentoo",
+            "package_manager": "emerge",
+            "install": "sudo emerge",
+            "update": "sudo emerge --sync && sudo emerge -uDN @world",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Alpine",
+            "package_manager": "apk",
+            "install": "sudo apk add",
+            "update": "sudo apk update && sudo apk upgrade",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Void",
+            "package_manager": "xbps-install",
+            "install": "sudo xbps-install -S",
+            "update": "sudo xbps-install -Su",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Slackware",
+            "package_manager": "slackpkg",
+            "install": "sudo slackpkg install",
+            "update": "sudo slackpkg update && sudo slackpkg upgrade-all",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "Solus",
+            "package_manager": "eopkg",
+            "install": "sudo eopkg install",
+            "update": "sudo eopkg update-repo && sudo eopkg upgrade",
+            "handles": ["system"],
+            "flags": []
+        }
+    ],
+    "BSD": [
+        {
+            "base": "FreeBSD",
+            "package_manager": "pkg",
+            "install": "sudo pkg install -y",
+            "update": "sudo pkg update && sudo pkg upgrade -y",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "OpenBSD",
+            "package_manager": "pkg_add",
+            "install": "sudo pkg_add",
+            "update": "sudo pkg_add -u",
+            "handles": ["system"],
+            "flags": []
+        },
+        {
+            "base": "NetBSD",
+            "package_manager": "pkgin",
+            "install": "sudo pkgin install",
+            "update": "sudo pkgin update && sudo pkgin upgrade",
+            "handles": ["system"],
+            "flags": []
+        }
+    ],
+    "Flatpak": [
+        {
+            "package_manager": "flatpak",
+            "install": "flatpak install",
+            "update": "flatpak update -y",
+            "handles": ["flatpak"],
+            "flags": ["-y"]
+        }
+    ],
+    "Snap": [
+        {
+            "package_manager": "snap",
+            "install": "sudo snap install",
+            "update": "sudo snap refresh",
+            "handles": ["snap"],
+            "flags": []
+        }
+    ],
+    "Nix": [
+        {
+            "package_manager": "nix-env",
+            "install": "nix-env -iA",
+            "update": "nix-channel --update && nix-env -u",
+            "handles": ["nix"],
+            "flags": []
+        }
+    ]
+}
