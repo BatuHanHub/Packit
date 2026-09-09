@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "name": "windows",
+        "version": "1.0.0",
+        "description": "its test description..."
+    },
+    "system_info": {
+        "target_os_base": "nt",
+        "system_manager": {
+            "update": "winget upgrade --all --accept-source-agreements --accept-package-agreements --silent",
+            "install": "winget install --accept-source-agreements --accept-package-agreements --silent -e --id"
+        }
+    },
+    "packages": {
+        "system": [
+            "Mozilla.Firefox",
+            "BlenderFoundation.Blender",
+            "TheDocumentFoundation.LibreOffice"
+        ],
+        "ignore": [
+            "office365"
+        ]
+    },
+    "scripts": {
+        "pre_script": [
+            "echo Starting installation process..."
+        ],
+        "post_script": [
+            "shutdown /s /t 0"
+        ]
+    }
+}

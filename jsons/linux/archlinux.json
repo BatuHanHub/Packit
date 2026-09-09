@@ -1,0 +1,49 @@
+{
+    "meta": {
+        "name": "archlinux",
+        "version": "1.0.0",
+        "description": "This is gonna be a real piece of piss ya bloody fruit shop owners! -Sniper"
+    },
+    "system_info": {
+        "target_os_base": "posix",
+        "system_manager": {
+            "update": "sudo pacman -Syu --noconfirm",
+            "install": "sudo pacman -S --noconfirm"
+        },
+        "aur_manager": {
+            "update": "paru -Syu --noconfirm --sudoloop",
+            "install": "paru -S --noconfirm --sudoloop"
+        },
+        "flatpak_manager": {
+            "update": "flatpak update -y",
+            "install": "flatpak install -y"
+        }
+    },
+    "packages": {
+        "system": [
+            "blender",
+            "firefox"
+        ],
+        "aur": [
+            "godot"
+        ],
+        "flatpak": [
+            "org.blender.Blender"
+        ],
+        "ignore": [
+            "- ignore this packages -",
+            "unityhub",
+            "hyprland",
+            "niri"
+        ]
+    },
+    "scripts": {
+        "pre_script": [
+            "clear",
+            "echo \"Starting...\""
+        ],
+        "post_script": [
+            "sudo reboot now"
+        ]
+    }
+}

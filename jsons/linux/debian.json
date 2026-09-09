@@ -1,0 +1,37 @@
+{
+    "meta": {
+        "name": "My Debian Server's json",
+        "version": "1.92.3",
+        "description": "Where there is no freedom, there is death and destruction. -Mustafa Kemal Atatürk"
+    },
+    "system_info": {
+        "target_os_base": "posix",
+        "system_manager": {
+            "update": "sudo apt update && sudo apt upgrade -y",
+            "install": "sudo apt install -y"
+        }
+    },
+    "packages": {
+        "system": [
+            "curl",
+            "git",
+            "htop",
+            "ufw",
+            "docker.io",
+            "docker-compose-v2"
+        ],
+        "ignore": [
+            "nginx"
+        ]
+    },
+    "scripts": {
+        "pre_script": [
+            "clear",
+            "echo \"Starting Debian server environment setup...\""
+        ],
+        "post_script": [
+            "sudo systemctl enable --now docker",
+            "echo \"Docker service enabled and started successfully!\""
+        ]
+    }
+}

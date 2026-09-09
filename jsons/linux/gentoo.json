@@ -1,0 +1,39 @@
+{
+    "meta": {
+        "name": "gentoo",
+        "version": "1.0.0",
+        "description": "Half Life 2 Episode 2, Team Fortress 2 and Portal... Three great games one orange box. Coming in october. -Lord GabeN"
+    },
+    "system_info": {
+        "target_os_base": "posix",
+        "system_manager": {
+            "update": "sudo emerge --sync && sudo emerge -uDN @world",
+            "install": "sudo emerge -av"
+        },
+        "flatpak_manager": {
+            "update": "flatpak update -y",
+            "install": "flatpak install -y"
+        }
+    },
+    "packages": {
+        "system": [
+            "app-editors/neovim",
+            "media-gfx/blender",
+            "www-client/firefox"
+        ],
+        "flatpak": [
+            "com.valvesoftware.Steam"
+        ],
+        "ignore": []
+    },
+    "scripts": {
+        "pre_script": [
+            "clear",
+            "echo \"Starting Gentoo package installation process...\""
+        ],
+        "post_script": [
+            "echo \"Installation completed successfully!\"",
+            "sudo reboot now"
+        ]
+    }
+}

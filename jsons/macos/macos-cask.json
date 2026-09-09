@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "name": "macos-cask",
+        "version": "1.0.0",
+        "description": "Peace at home, peace in the world. -Mustafa Kemal Atatürk"
+    },
+    "system_info": {
+        "target_os_base": "posix",
+        "cask_manager": {
+            "update": "brew upgrade --cask",
+            "install": "brew install --cask"
+        }
+    },
+    "packages": {
+        "cask": [
+            "firefox",
+            "blender",
+            "visual-studio-code"
+        ],
+        "ignore": []
+    },
+    "scripts": {
+        "pre_script": [
+            "echo \"Starting Cask packages installation...\""
+        ],
+        "post_script": [
+            "echo \"All macOS setups completed successfully!\""
+        ]
+    }
+}

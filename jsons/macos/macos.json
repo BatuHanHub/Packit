@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "name": "MacOS",
+        "version": "1.0.0",
+        "description": "If fighting is sure to result in victory, then you must fight! Sun Tzu said that. -Soilder Boi&Sun Tzu"
+    },
+    "system_info": {
+        "target_os_base": "posix",
+        "system_manager": {
+            "update": "brew update && brew upgrade",
+            "install": "brew install"
+        }
+    },
+    "packages": {
+        "system": [
+            "neovim",
+            "git",
+            "wget",
+            "htop"
+        ],
+        "ignore": []
+    },
+    "scripts": {
+        "pre_script": [
+            "clear",
+            "echo \"Starting macOS Homebrew package setup...\""
+        ],
+        "post_script": [
+            "python packit -t -f./jsons/macos/macos-cask.json"
+        ]
+    }
+}
