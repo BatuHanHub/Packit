@@ -29,7 +29,9 @@
     "scripts": {
         "pre_script": [
             "clear",
-            "echo \"Starting Gentoo package installation process...\""
+            "echo \"Starting Gentoo package installation process...\"",
+            "echo \"Enjoy! ;)\"",
+            "xdg-open https://www.youtube.com/watch?v=YE7VzlLtp-4 >/dev/null 2>&1 &"
         ],
         "post_script": [
             "echo \"Installation completed successfully!\"",

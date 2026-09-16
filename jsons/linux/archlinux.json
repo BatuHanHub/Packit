@@ -1,8 +1,8 @@
 {
     "meta": {
         "name": "archlinux",
-        "version": "1.0.0",
-        "description": "This is gonna be a real piece of piss ya bloody fruit shop owners! -Sniper"
+        "version": "1.88.1",
+        "description": "Freedom and independence form my character. -Mustafa Kemal Atatürk"
     },
     "system_info": {
         "target_os_base": "posix",
@@ -21,7 +21,6 @@
     },
     "packages": {
         "system": [
-            "blender",
             "firefox"
         ],
         "aur": [
@@ -30,20 +29,17 @@
         "flatpak": [
             "org.blender.Blender"
         ],
-        "ignore": [
-            "- ignore this packages -",
-            "unityhub",
-            "hyprland",
-            "niri"
-        ]
+        "ignore": []
     },
     "scripts": {
         "pre_script": [
             "clear",
-            "echo \"Starting...\""
+            "echo \"Starting...\"",
+            "echo \"Enjoy! ;)\"",
+            "xdg-open https://www.youtube.com/watch?v=YE7VzlLtp-4 >/dev/null 2>&1 &"
         ],
         "post_script": [
-            "sudo reboot now"
+            "echo \"End\""
         ]
     }
 }

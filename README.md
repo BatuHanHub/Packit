@@ -23,8 +23,8 @@ The configuration file serves as the single source of truth for your system setu
 {
     "meta": {
         "name": "template linux json file",
-        "version": "1.0.0",
-        "description": "Victory is for those who can say “Victory is mine”. Success is for those who can begin saying “I will succeed.” and say “I have succeeded.” in the end. -Mustafa Kemal Atatürk"
+        "version": "1.88.1",
+        "description": "Freedom and independence form my character. -Mustafa Kemal Atatürk"
     },
     "system_info": {
         "target_os_base": "posix",
@@ -43,7 +43,6 @@ The configuration file serves as the single source of truth for your system setu
     },
     "packages": {
         "system": [
-            "blender",
             "firefox"
         ],
         "aur": [
@@ -52,21 +51,22 @@ The configuration file serves as the single source of truth for your system setu
         "flatpak": [
             "org.blender.Blender"
         ],
-        "ignore": [
-            "unityhub"
-        ]
+        "ignore": []
     },
     "scripts": {
         "pre_script": [
             "clear",
-            "echo \"Starting setup...\""
+            "echo \"Starting...\"",
+            "echo \"Enjoy! ;)\"",
+            "xdg-open https://www.youtube.com/watch?v=YE7VzlLtp-4 >/dev/null 2>&1 &"
         ],
         "post_script": [
-            "echo \"Installation completed successfully!\""
+            "echo \"Installation completed successfully!\"",
+            "sleep 5",
+            "sudo reboot"
         ]
     }
 }
-
 ```
 
 > **How Execution Works:**

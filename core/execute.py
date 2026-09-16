@@ -1,4 +1,5 @@
 import subprocess
+from core.printutility import *
 
 # Execute Script
 def executeScript(scriptsDict, preScript, test=False):
@@ -7,7 +8,7 @@ def executeScript(scriptsDict, preScript, test=False):
 
     for cmd in commands:
         if(test):
-            print(f"[TEST] {cmd}")
+            pTest(f"{cmd}")
         else:
             subprocess.run(cmd, shell=True)
 
@@ -18,7 +19,7 @@ def executeUpdate(systemInfo, test=False):
             cmd = value.get("update")
 
             if(test):
-                print(f"[TEST] {cmd}")
+                pTest(f"{cmd}")
 
             else:
                 subprocess.run(f"{cmd}", shell=True)
@@ -26,34 +27,35 @@ def executeUpdate(systemInfo, test=False):
 # Install packages
 def executeInstall(systemInfo, packageMap, test=False):
     for key, pkgs in packageMap.items():
-        if(not pkgs or key == "ignore"):
+        if(not pkgs or key == "ignore"): # do not look ignore key datas
             continue
 
-        managerKey = f"{key}_manager"
-        manager = systemInfo.get(managerKey)
+        managerKey = f"{key}_manager" # get keys for example: system_manaager, aur_manager, flatpak_manager ...
+        manager = systemInfo.get(managerKey) # get package manager
 
         if(isinstance(manager, dict) and manager.get("install")):
-            installCmd = manager["install"]
-            fullCmd = f"{installCmd} {' ' .join(pkgs)}"
+            installCmd = manager["install"] 
+            fullCmd = f"{installCmd} {' '.join(pkgs)}" # package_manager and packages
 
             if(test):
-                print(f"[TEST] {fullCmd}")
+                pTest(f"{fullCmd}")
 
             else:
                 subprocess.run(fullCmd, shell=True, check=True)
 
         else:
             if(test):
-                print(f"[TEST SKIP] No install command defined for '{key}' packages.")
+                pTest(f"No install command defined for '{key}' packages.(skipped)")
 
 # Start execution
 def startExecution(packageListPath, test=False):
+    # get datas from json
     systemInfo = packageListPath.get("system_info", {})
     packages = packageListPath.get("packages", {})
     scripts = packageListPath.get("scripts", {})
     
 
-    executeScript(scripts, 1, test)
-    executeUpdate(systemInfo, test)
-    executeInstall(systemInfo, packages, test)
-    executeScript(scripts, 0, test)
+    executeScript(scripts, 1, test) # pre script
+    executeUpdate(systemInfo, test) # update
+    executeInstall(systemInfo, packages, test) # install packages
+    executeScript(scripts, 0, test) # last scripts

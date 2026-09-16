@@ -27,7 +27,9 @@
     "scripts": {
         "pre_script": [
             "clear",
-            "echo \"Starting Debian server environment setup...\""
+            "echo \"Starting Debian server environment setup...\"",
+            "echo \"Enjoy! ;)\"",
+            "xdg-open https://www.youtube.com/watch?v=YE7VzlLtp-4 >/dev/null 2>&1 &"
         ],
         "post_script": [
             "sudo systemctl enable --now docker",

@@ -26,8 +26,10 @@ import argparse
 from core.detection import checkPlatformCompatibility
 from core.execute import startExecution
 from core.jsonutility import loadJson, generateJson
+from core.printutility import pError, pPackitStatus
 
 if (__name__ == "__main__"):
+    #region Arguments
     parser = argparse.ArgumentParser(description="Packit - Cross-platform package management automation tool")
     parser.add_argument(
         '-f',
@@ -59,21 +61,29 @@ if (__name__ == "__main__"):
     )
 
     args = parser.parse_args()
+    #endregion
 
-    if(args.generate is not None):
-        generateJson(args.os_base, args.generate)
-
-    elif(args.file):
+    # executing
+    if(args.file):
         data = loadJson(args.file)
         if(data):
-            isCompatible, msg = checkPlatformCompatibility(data)
-            print(msg)
+            isCompatible = checkPlatformCompatibility(data, args.test)
 
             if(not isCompatible and not args.test):
-                print("[ABORTED] Execution stopped due to OS mismatch. Use -t / --test to preview commands anyway.")
+                pError("Execution stopped due to OS mismatch. Use -t / --test to preview commands anyway.")
 
             else:
-                startExecution(data, test=args.test)
-                
+                try:
+                    startExecution(data, test=args.test)
+
+                except KeyboardInterrupt as k:
+                    print("Cya!")
+
+    # generate json
+    elif(args.generate is not None):
+        generateJson(args.os_base, args.generate)
+
+    # nothing
     else:
+        pPackitStatus()
         parser.print_help()

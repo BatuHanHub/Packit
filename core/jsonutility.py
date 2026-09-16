@@ -1,16 +1,34 @@
 import os
 import json
 import random
+from core.printutility import *
 
 EXAMPLES = [
-    "Peace at home, peace on earth. -Mustafa Kemal Atatürk",
+    "Peace at home, peace in the world. -Mustafa Kemal Atatürk",
     "Victory is for those who can say “Victory is mine”. Success is for those who can begin saying “I will succeed.” and say “I have succeeded.” in the end. -Mustafa Kemal Atatürk",
     "Where there is no freedom, there is death and destruction. -Mustafa Kemal Atatürk",
+    "The biggest war is the war against ignorance. -Mustafa Kemal Atatürk",
+    "The most genuine guide in life is science. -Mustafa Kemal Atatürk",
+    "They must all understand that we mean full independency when we say we want peace. -Mustafa Kemal Atatürk",
+    "Freedom and independence form my character. -Mustafa Kemal Atatürk",
+
+    "Let us love, let us be loved; the world shall be left to no one. -Yunus Emre",
+
     "Why should we build our happiness on the opinions of others, when we can find it in our own hearts? -J.J. Rousseau",
+
     "If fighting is sure to result in victory, then you must fight! Sun Tzu said that. -Soilder Boi&Sun Tzu",
     "Half Life 2 Episode 2, Team Fortress 2 and Portal... Three great games one orange box. Coming in october. -Lord GabeN",
-    "This is gonna be a real piece of piss ya bloody fruit shop owners! -Sniper",
-    "Bingo, bango, bongo; bish, bash, bosh. -CT"
+    "This is gonna be a real piece of piss ya bloody fruit shop owners!",
+    "Rise and shine, Mr. Freeman. Rise and... shine.",
+    "Bingo, bango, bongo; bish, bash, bosh.",
+    "The cake is a lie.",
+
+    "War... War never changes.",
+    "Press F to pay respects.",
+    "Wake up, Samurai. We have a city to burn. -Johnny Silverhand",
+
+    "I'm gonna make him an offer he can't refuse. -Vito Corleone",
+    "There is no spoon."
 ]
 
 def loadJson(file):
@@ -19,11 +37,11 @@ def loadJson(file):
             return json.load(f)
  
     except FileNotFoundError:
-        print(f"[ERROR] File not found: {file}")
+        pError(f"File not found: {file}")
         return None
  
     except json.JSONDecodeError as e:
-        print(f"[ERROR] {file} is not valid JSON: {e}")
+        pError(f"{file} is not valid JSON: {e}")
         return None
 
 def generateJson(targetOSBase, fileName):
@@ -33,7 +51,8 @@ def generateJson(targetOSBase, fileName):
     if (not fileName.endswith(".json")):
         fileName += ".json"
 
-    nameOfJson = os.path.splitext(os.path.basename(fileName))[0] # json's default name
+    # json name
+    nameOfJson = os.path.splitext(os.path.basename(fileName))[0] 
 
     # Linux/macos/BSD etc.
     #region posixJson
@@ -91,6 +110,7 @@ def generateJson(targetOSBase, fileName):
         }
     #endregion
 
+    #region headJson
     config = {
         "meta": {
             "name": nameOfJson,
@@ -104,7 +124,7 @@ def generateJson(targetOSBase, fileName):
             "post_script": []
         }
     }
-    
+    #endregion
 
     try:
         # Create directory if not exists
@@ -112,9 +132,10 @@ def generateJson(targetOSBase, fileName):
 
         with open(fileName, "w", encoding="utf8") as f:
             json.dump(config, f, indent=4, ensure_ascii=False)
-        print(f"[OK] {fileName} created successfully")
+
+        pInfo(f"{fileName} created successfully")
 
     except OSError as e:
-        print(f"[ERROR] Could not write {fileName}: {e}")
+        pError(f"Could not write {fileName}: {e}")
 
     return config

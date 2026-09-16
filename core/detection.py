@@ -1,20 +1,26 @@
 import os
-import json
-import shutil
+from core.printutility import *
 
 def getSystemOSBase():
     if os.name in ["nt", "posix"]:
         return os.name
     return "unknown"
 
-def checkPlatformCompatibility(jsonData):
+def checkPlatformCompatibility(jsonData, test):
     targetOS = jsonData.get("system_info", {}).get("target_os_base", "unknown")
-    currectOS = getSystemOSBase()
+    currentOS = getSystemOSBase()
 
-    if(targetOS == "unknown" or currectOS == "unknown"):
-        return True, f"[WARNING] System base is set to 'unknown'. Proceeding anyway..."
+    if(targetOS == "unknown" or currentOS == "unknown"):
+        pWarn(f"System base is set to 'unknown'. Proceeding anyway...")
+        return True
 
-    if(targetOS != currectOS):
-        return False, f"[ERROR] Platform mismatch! Target OS: '{targetOS}', Current OS: '{currectOS}'"
+    if(targetOS != currentOS and not test):
+        pError(f"Platform mismatch! Target OS: '{targetOS}', Current OS: '{currentOS}'")
+        return False
 
-    return True, "[OK] Platform compatibility verified."
+    elif(targetOS != currentOS and test):
+        pWarn(f"Platform mismatch! Target OS: '{targetOS}', Current OS: '{currentOS}'")
+        return False
+
+    pSuccess("Platform compatibility verified.")
+    return True 
