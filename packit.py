@@ -5,12 +5,12 @@ ____             _     _ _
 |  __/ (_| | (__|   < | | |_ 
 |_|   \__,_|\___|_|\_\|_|\__|
 
-Packit - Cross-Platform CLI Package Management Automation Tool
+Packit v4.0 - Cross-Platform CLI Package Management Automation Tool
 https://github.com/BatuHanHub/Packit/
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
+BatuHanHub, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -22,11 +22,13 @@ You should receive a copy of the GNU General Public License
 along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
+__version__ = "4.0"
+
 import argparse
-from core.detection import checkPlatformCompatibility
-from core.execute import startExecution
-from core.jsonutility import loadJson, generateJson
-from core.printutility import pError, pPackitStatus
+from core.detection import check_platform_compatibility
+from core.execute import start_execution
+from core.jsonutility import load_json, generate_json
+from core.printutility import print_error
 
 if (__name__ == "__main__"):
     #region Arguments
@@ -64,26 +66,25 @@ if (__name__ == "__main__"):
     #endregion
 
     # executing
-    if(args.file):
-        data = loadJson(args.file)
-        if(data):
-            isCompatible = checkPlatformCompatibility(data, args.test)
+    if args.file:
+        data = load_json(args.file)
+        if data:
+            is_compatible = check_platform_compatibility(data, args.test)
 
-            if(not isCompatible and not args.test):
-                pError("Execution stopped due to OS mismatch. Use -t / --test to preview commands anyway.")
+            if not is_compatible and not args.test:
+                print_error("Execution stopped due to operating system mismatch. Use -t / --test to preview commands anyway.")
 
             else:
                 try:
-                    startExecution(data, test=args.test)
+                    start_execution(data, test=args.test)
 
                 except KeyboardInterrupt as k:
                     print("Cya!")
 
     # generate json
-    elif(args.generate is not None):
-        generateJson(args.os_base, args.generate)
+    elif args.generate is not None:
+        generate_json(args.os_base, args.generate)
 
     # nothing
     else:
-        pPackitStatus()
         parser.print_help()

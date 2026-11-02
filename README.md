@@ -60,6 +60,9 @@ The configuration file serves as the single source of truth for your system setu
             "echo \"Enjoy! ;)\"",
             "xdg-open https://www.youtube.com/watch?v=YE7VzlLtp-4 >/dev/null 2>&1 &"
         ],
+        "mid_script": [
+            "echo \"Updates finished!\""
+        ],
         "post_script": [
             "echo \"Installation completed successfully!\"",
             "sleep 5",
@@ -126,11 +129,11 @@ cd Packit
 
 # Generate a starter configuration
 python packit.py -g home-setup.json -x posix
-python packit.py -g work-setup.json -x posix
+python packit.py --generate work-setup.json --os-base posix
 
 # Preview the commands
 python packit.py -f home-setup.json -t
-python packit.py -f work-setup.json -t
+python packit.py --file work-setup.json --test
 ```
 > **Note:**
 > Depending on your operating system or Linux distribution, the Python executable might be named `python3` instead of `python`. If the command fails, try running `python3 packit.py ...`.
