@@ -1,28 +1,4 @@
-r"""
-____             _     _ _   
-|  _ \ __ _  ____| | __(_) |_ 
-| |_) / _` |/ __| |/ /| | __|
-|  __/ (_| | (__|   < | | |_ 
-|_|   \__,_|\___|_|\_\|_|\__|
-
-Packit v4.0 - Cross-Platform CLI Package Management Automation Tool
-https://github.com/BatuHanHub/Packit/
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-BatuHanHub, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should receive a copy of the GNU General Public License
-along with this program. If not, see <https://www.gnu.org/licenses/>.
-"""
-
-__version__ = "4.0"
+__version__ = "4.1"
 
 import argparse
 from core.detection import check_platform_compatibility
