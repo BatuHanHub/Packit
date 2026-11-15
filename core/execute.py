@@ -25,7 +25,8 @@ def execute_script(scripts_dict, mode_script, test=False):
             with open(f"{log_filename}", "a") as log_file:
                 log_file.write(f"Executing script: {key}\n")
                 log_file.flush()
-                subprocess.run(cmd, shell=True, stdout=log_file, stderr=log_file, check=True)
+                run_command_with_logging(cmd, log_file)
+                # subprocess.run(cmd, shell=True, stdout=log_file, stderr=log_file, check=True)
 
 # Update system
 def execute_update(system_info, test=False):
@@ -40,7 +41,8 @@ def execute_update(system_info, test=False):
                 with open(f"{log_filename}", "a") as log_file:
                     log_file.write(f"Updating {key}...\n")
                     log_file.flush()
-                    subprocess.run(f"{cmd}", shell=True, stdout=log_file, stderr=log_file, check=True)
+                    run_command_with_logging(cmd, log_file)
+                    # subprocess.run(f"{cmd}", shell=True, stdout=log_file, stderr=log_file, check=True)
 
 # Install packages
 def execute_install(system_info, package_map, test=False):
@@ -62,7 +64,8 @@ def execute_install(system_info, package_map, test=False):
                 with open(f"{log_filename}", "a") as log_file:
                     log_file.write(f"Installing {key} packages...\n")
                     log_file.flush()
-                    subprocess.run(command_full, shell=True, check=True, stdout=log_file, stderr=log_file)
+                    run_command_with_logging(command_full, log_file)
+                    # subprocess.run(command_full, shell=True, check=True, stdout=log_file, stderr=log_file)
 
         else:
             if(test):

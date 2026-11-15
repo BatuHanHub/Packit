@@ -1,4 +1,6 @@
 import os
+import sys
+import subprocess
 
 # for windows ANSI color support
 if os.name == 'nt':
@@ -33,3 +35,24 @@ def print_success(msg: str):
 
 def print_test(msg: str):
     print(f"{Color.MAGENTA}{Color.BOLD}[TEST]{Color.RESET} {Color.MAGENTA}{msg}{Color.RESET}")
+
+
+def run_command_with_logging(cmd, log_file):
+    process = subprocess.Popen(
+        cmd, 
+        shell=True, 
+        stdout=subprocess.PIPE, 
+        stderr=subprocess.STDOUT, 
+        text=True
+    )
+
+    # read line to line
+    for line in process.stdout:
+        sys.stdout.write(line)
+        sys.stdout.flush()
+        log_file.write(line)
+        log_file.flush()
+        
+    process.wait()
+    if process.returncode != 0:
+        raise subprocess.CalledProcessError(process.returncode, cmd)    
